@@ -43,12 +43,12 @@ binary_sensor:
 
 switch:
   - platform: gpio
-    name: ${upper_devicename}  Relay1
+    name: ${upper_devicename} Relay1
     pin: GPIO14
     id: relay1
 
   - platform: gpio
-    name: ${upper_devicename}  Relay2
+    name: ${upper_devicename} Relay2
     pin: GPIO3
     id: relay2
 
