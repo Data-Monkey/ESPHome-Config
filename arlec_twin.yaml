@@ -1,7 +1,9 @@
 ---
 # Arlec Twin Power Socket
 # -----------------------
-# Tasmota Template {"NAME":"Arlec Twin","GPIO":[0,17,0,22,0,0,0,0,0,56,21,0,0],"FLAG":0,"BASE":18}
+# Brand: Arlec Grid Connect
+# Model: PC288HA Smart Plug-in Twin Socket 
+# Tasmota Template: {"NAME":"Arlec Twin","GPIO":[0,17,0,22,0,0,0,0,0,56,21,0,0],"FLAG":0,"BASE":18}
 
 substitutions:
   devicename: arlec_twin
@@ -41,6 +43,9 @@ binary_sensor:
     on_press:
       - switch.toggle: relay1
 
+  - platform: status
+    name: "Status"
+
 switch:
   - platform: gpio
     name: ${upper_devicename} Relay1
@@ -56,3 +61,16 @@ status_led:
   pin:
     number: GPIO13
     inverted: yes
+
+# -- Status LED was more usefull than exposng the LED
+#output:
+#- platform: gpio
+#  id: LED
+#  pin:
+#    number: GPIO13
+#    inverted: yes
+
+#light: 
+#- platform: binary
+#  name: ${upper_devicename} LED
+#  output: LED
