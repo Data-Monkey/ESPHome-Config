@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd /mnt/cache/appdata/home-assistant
+cd /mnt/cache/appdata/ESPHome
 
 git add .
 git status
