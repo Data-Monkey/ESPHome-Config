@@ -1,0 +1,58 @@
+---
+# Arlec Twin Power Socket
+# -----------------------
+# Tasmota Template {"NAME":"Arlec Twin","GPIO":[0,17,0,22,0,0,0,0,0,56,21,0,0],"FLAG":0,"BASE":18}
+
+substitutions:
+  devicename: arlec_twin
+  upper_devicename: ArlecTwin
+
+esphome:
+  name: $devicename
+  platform: ESP8266
+  board: esp01_1m
+
+wifi:
+  ssid: !secret WIFI_SSID
+  password: !secret WIFI_PWD
+  manual_ip:
+    static_ip: 192.168.2.21
+    gateway: !secret WIFI_GATEWAY
+    subnet: !secret WIFI_SUBNET
+
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+  password: !secret API_PWD
+
+ota:
+  password: !secret OTA_PWD
+
+binary_sensor:
+  - platform: gpio
+    pin:
+      number: GPIO1
+      mode: INPUT_PULLUP
+      inverted: True
+    name: ${upper_devicename} Button
+    on_press:
+      - switch.toggle: relay1
+
+switch:
+  - platform: gpio
+    name: ${upper_devicename}  Relay1
+    pin: GPIO14
+    id: relay1
+
+  - platform: gpio
+    name: ${upper_devicename}  Relay2
+    pin: GPIO3
+    id: relay2
+
+status_led:
+  pin:
+    number: GPIO13
+    inverted: yes
